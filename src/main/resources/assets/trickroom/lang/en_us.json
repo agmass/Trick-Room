@@ -1,0 +1,11 @@
+{
+  "effect.trickroom.immobilized": "Immobilized",
+  "effect.trickroom.ruinous": "Ruinous",
+  "effect.trickroom.vulnerability": "Vulnerability",
+  "entity.trickroom.trick_room": "Trick Room",
+  "item.trickroom.trick_room": "Trick Room",
+  "subtitle.trickroom.trick_room": "Trick Room Conjures",
+  "tooltip.trickroom.trick_room": "Trick Room Ability: ",
+  "tooltip.trickroom.trick_room_multiplier": "Trick Room Size: ",
+  "tip.cooldown": "On Cooldown: %s"
+}

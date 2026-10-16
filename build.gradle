@@ -1,0 +1,83 @@
+plugins {
+	id 'fabric-loom' version '1.17.21'
+	id 'maven-publish'
+}
+
+group = project.property('maven_group')
+version = project.property('mod_version')
+
+def minecraftVersion = project.property('minecraft_version')
+def yarnMappings = project.property('yarn_mappings')
+def loaderVersion = project.property('loader_version')
+def fabricVersion = project.property('fabric_version')
+
+base {
+	archivesName = project.property('archives_base_name')
+}
+loom {
+    accessWidenerPath = file("src/main/resources/trickroom.accesswidener")
+}
+repositories {
+	mavenCentral()
+	maven { url = 'https://maven.fabricmc.net/' }
+    maven {
+        name = "RiftRealms"
+        url = "https://maven.riftrealms.de/releases"
+    }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraftVersion}"
+	mappings  "net.fabricmc:yarn:${yarnMappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${loaderVersion}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
+    modImplementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+processResources {
+	inputs.property "version", project.version
+	inputs.property "minecraft_version", minecraftVersion
+	inputs.property "loader_version", loaderVersion
+	inputs.property "fabric_version", fabricVersion
+
+	filesMatching("fabric.mod.json") {
+		expand(
+				"version": project.version,
+				"minecraft_version": minecraftVersion,
+				"loader_version": loaderVersion,
+				"fabric_version": fabricVersion
+		)
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+	it.options.compilerArgs.addAll(["-Xlint:deprecation"])
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${base.archivesName.get()}" }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		mavenLocal()
+	}
+}

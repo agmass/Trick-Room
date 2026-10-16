@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "trickroom",
+	"version": "${version}",
+	"name": "Trick Room",
+	"description": "Baby Menagerie",
+	"authors": [
+		"Moth"
+	],
+	"contact": {
+
+	},
+	"icon": "assets/trickroom/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"moth.trickroom.TrickRoomMod"
+		],
+		"client": [
+			"moth.trickroom.client.TrickRoomClient"
+		]
+	},
+	"mixins": [
+		"trickroom.mixins.json"
+	],
+    "accessWidener" : "trickroom.accesswidener",
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"fabric-api": ">=${fabric_version}",
+		"minecraft": "~${minecraft_version}",
+		"java": ">=21"
+	},
+	"custom": {
+		"loom:mods": [
+			{
+				"name": "Trick Room",
+				"value": "trickroom"
+			}
+		]
+	}
+}

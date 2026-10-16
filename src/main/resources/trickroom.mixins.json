@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "moth.trickroom.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CraftingScreenHandlerMixin",
+    "ItemMixin",
+    "TrickRoomBlockViewRaycastMixin",
+    "TrickRoomEntityCollisionMixin",
+    "TrickRoomProjectileCollisionMixin",
+    "TrickRoomStatusEffectMixin",
+    "TridentItemMixin"
+  ],
+  "client": [
+    "client.KeyboardMixin",
+    "client.MinecraftClientMixin",
+    "client.MouseMixin",
+    "client.RenderLayerAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

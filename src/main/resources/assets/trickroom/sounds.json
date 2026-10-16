@@ -1,0 +1,8 @@
+{
+  "trick_room": {
+    "sounds": [
+      "trickroom:item/trick_room"
+    ],
+    "subtitle": "subtitle.trickroom.trick_room"
+  }
+}
