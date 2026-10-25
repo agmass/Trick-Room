@@ -2,7 +2,7 @@
 build/
 out/
 classes/
-libs/
+
 *.launch
 
 .idea/
